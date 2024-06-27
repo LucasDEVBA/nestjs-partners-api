@@ -1,8 +1,24 @@
 services:
+  app:
+    # Construir a imagem do contêiner usando o Dockerfile na raiz do projeto
+    build: .
+    # Mapeia a porta 3000 do host para a porta 3000 do contêiner
+    ports:
+      - 3000:3000
+    # Monta o diretório atual (host) no diretório de trabalho dentro do contêiner
+    volumes:
+      - .:/home/node/app
+
   db:
+    # Usa a imagem oficial do MySQL 8.0.30 baseada no Debian
     image: mysql:8.0.30-debian
+    # Define variáveis de ambiente necessárias para configurar o MySQL
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: nest-partners
+    # Mapeia a porta 3306 do host para a porta 3306 do contêiner
     ports:
       - 3306:3306
+    # Monta um volume para persistir os dados do MySQL no host
+    volumes:
+      - ./.docker/dbdata:/var/lib/mysql
