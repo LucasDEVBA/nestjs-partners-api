@@ -1,0 +1,10 @@
+###
+POST http://localhost:3000/events
+Content-Type: application/json
+
+{
+  "name": "New Event",
+  "date": "2024-07-02T00:00:00",
+  "description": "Dia 2 de Julho"
+  "price": 200,
+}
